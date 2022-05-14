@@ -7,7 +7,8 @@ const PostCreate = () => {
     const [title,setTitle] = useState('');
     const handleSubmit = (e)=>{
         e.preventDefault();
-        axios.post('hppt//')
+        axios.post('hppt//localhost:4000/posts',{title});
+        setTitle('');
     }
   return (
     <div>
