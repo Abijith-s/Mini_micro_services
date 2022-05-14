@@ -5,9 +5,9 @@ import axios from 'axios';
 
 const PostCreate = () => {
     const [title,setTitle] = useState('');
-    const handleSubmit = (e)=>{
+    const handleSubmit =async (e)=>{
         e.preventDefault();
-        axios.post('hppt//localhost:4000/posts',{title});
+       await axios.post('http//localhost:4000/posts',{title});
         setTitle('');
     }
   return (
