@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
 import CommentCreate from "./CommentCreate";
+import CommentList from "./CommentList";
 
 const Posts = () => {
   const [post, setPots] = useState({});
@@ -22,6 +23,7 @@ const Posts = () => {
             <Card.Body>
               <Card.Title>Posts</Card.Title>
               <Card.Text>{e.title}</Card.Text>
+              <CommentList postId ={e.id} />
               <CommentCreate postId={e.id}/>
             </Card.Body>
           </Card>
