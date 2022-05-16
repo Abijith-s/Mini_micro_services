@@ -29,4 +29,4 @@ const PostCreate = () => {
     </div>
   )
 }
-export default PostCreate
+export default PostCreate;

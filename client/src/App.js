@@ -1,6 +1,6 @@
-import React from 'react'
-import PostCreate from './PostCreate'
-import Posts from './Posts'
+import React from 'react';
+import PostCreate from './PostCreate';
+import Posts from './Posts';
 const App =()=> {
   return (
     <div>
@@ -11,4 +11,4 @@ const App =()=> {
   )
 }
 
-export default App
+export default App;
