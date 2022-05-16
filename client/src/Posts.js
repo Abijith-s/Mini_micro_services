@@ -22,7 +22,7 @@ const Posts = () => {
           <Card className="d-flex flex-row justify-content-center mt-3" style={{ width: "18rem"  }}>
             <Card.Body>
               <Card.Title>Posts</Card.Title>
-              <Card.Text>{e.title}</Card.Text>
+              <h3>{e.title}</h3>
               <CommentList postId ={e.id} />
               <CommentCreate postId={e.id}/>
             </Card.Body>

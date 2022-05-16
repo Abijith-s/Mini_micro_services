@@ -9,8 +9,8 @@ const CommentList = (props) => {
        setComments(res.data);
     }
     useEffect(()=>{
-        fetchComments()
-    });
+        fetchComments();
+    }, []);
   return (
     <div>
       {
