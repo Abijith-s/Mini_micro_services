@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 
 const CommentCreate = (props) => {
-  const { postId } = props.postId;
+  const {postId}  = props;
   const [comment, setComment] = useState('');
   const handleSubmit = (e)=>{
     e.preventDefault();
