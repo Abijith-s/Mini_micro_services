@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Card from 'react-bootstrap/Card';
+import Card from "react-bootstrap/Card";
 
 const Posts = () => {
   const [post, setPots] = useState({});
@@ -11,22 +11,21 @@ const Posts = () => {
   useEffect(() => {
     fetchposts();
   }, []);
+
+  const renderPosts = Object.values(post);
   return (
     <div className="container mt-3">
-      <Card style={{ width: "18rem" }}>
-        <Card.Body>
-          <Card.Title>Card Title</Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">
-            Card Subtitle
-          </Card.Subtitle>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </Card.Text>
-          <Card.Link href="#">Card Link</Card.Link>
-          <Card.Link href="#">Another Link</Card.Link>
-        </Card.Body>
-      </Card>
+      {renderPosts?.map((e) => {
+        console.log("posts", e.title);
+        return (
+          <Card className="d-flex flex-row justify-content-center mt-3" style={{ width: "18rem"  }}>
+            <Card.Body>
+              <Card.Title>Posts</Card.Title>
+              <Card.Text>{e.title}</Card.Text>
+            </Card.Body>
+          </Card>
+        );
+      })}
     </div>
   );
 };
