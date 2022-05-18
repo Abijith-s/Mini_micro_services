@@ -1,8 +1,6 @@
 import React from 'react';
 
 const CommentList = ({comments}) => {
-    
-    console.log("comments",comments)
   return (
     <div>
       {
