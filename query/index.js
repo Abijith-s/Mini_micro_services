@@ -6,15 +6,8 @@ const app = express();
  app.use(bodyParser.json());
  app.use(cors());
 
- const posts = {}
-
- app.get('/posts',(req,res)=>{
-    res.send(posts)
- });
-
- app.post('/events',(req,res)=>{
-    const {type,data} = req.body;
-
+ const posts = {};
+ const handleEvents = (type,data)=>{
     if(type === 'PostCreate'){
         const {id,title} = data;
         posts[id] = {id,title,comments:[]};
@@ -34,11 +27,24 @@ const app = express();
         comment.status = status;
         comment.content = content;
     }
-    console.log(posts)
+ }
+ app.get('/posts',(req,res)=>{
+    res.send(posts);
+ });
+
+ app.post('/events',(req,res)=>{
+    const {type,data} = req.body;
+
+    handleEvents(type,data);
 
     res.send({});
  });
 
-app.listen(4002,()=>{
+app.listen(4002,async()=>{
     console.log("listening to port 4002");
+    await axios.get('http://localhost:4005/events');
+    for(let event of res.data){
+        console.log("proccessing event",event.type);
+        handleEvents(event.type,event.data);
+    }
 })
