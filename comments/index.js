@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const {randomBytes } = require('crypto');
 const cors = require('cors');
 const axios = require('axios');
+const { stat } = require('fs');
 
 const app = express();
 
@@ -30,15 +31,35 @@ app.post('/posts/:id/comments',async(req,res)=>{
             postId:req.params.id,
             status:'pending'
         }
-    })
+    });
     res.status(201).send(comments); 
 });
 
-app.post('/events',(req,res)=>{
+app.post('/events',async(req,res)=>{
     console.log("evnet recieved",req.body.type);
 
-    res.send({})
+    const {type,data} = req.body;
+
+    if(type === 'CommentCreated'){
+        const {postId,id,status,content} = data;
+        comments = commentsByPostId[postId];
+        
+        const comment  = comments.find(comment => {
+           return comment.id === id ;
+        });
+        comment.status = status;
+    await axios.post('http://localhost:4005',{
+        type:'CommentCreated';
+        data:{
+            id,
+            status,
+            postId,
+            content    
+        }
+    })
+    }
+    res.send({});
 });
 app.listen(4001,()=>{
-    console.log("listening to port 4001")
+    console.log("listening to port 4001");
 }) 
