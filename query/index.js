@@ -24,8 +24,18 @@ const app = express();
         const post = posts[postId];
         post.comments.push({id,content,status});
     }
+    if(type === 'CommentUpdated'){
+        const {id,content,postId,status} = data;
 
-    
+        const post = posts[postId];
+        const comment = post.comment.find(comment => {
+            return comment.id === id
+        });
+        comment.status = status;
+        comment.content = content
+    }
+
+
     res.send({});
  });
 
