@@ -28,13 +28,13 @@ const app = express();
         const {id,content,postId,status} = data;
 
         const post = posts[postId];
-        const comment = post.comment.find(comment => {
-            return comment.id === id
+        const comment = post.comments.find(comment => {
+            return comment.id === id;
         });
         comment.status = status;
-        comment.content = content
+        comment.content = content;
     }
-
+    console.log(posts)
 
     res.send({});
  });
